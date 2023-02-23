@@ -7,6 +7,7 @@ Queue simbols = new Queue();
 char[] operators = new[] { '+', '-', '*', '/' };
 char[] brackets = new[] { '(', ')' };
 string buff = "";
+Stack calculate = new Stack();
 
 // char? oper = null;
 var priorities = new Dictionary<string, int>();
@@ -112,4 +113,33 @@ foreach (var el in tokens.GetElements())
 while (!opers.IsEmpty())
 {
     simbols.Push(opers.Pull());
+}
+
+foreach (var n in simbols.GetElements())
+{
+    //Console.WriteLine(el);
+    int number;
+    bool isNumeric = int.TryParse(n, out number);
+    if (isNumeric == true)
+    {
+        calculate.Push(n);
+        int nu = Convert.ToInt16(n);
+    }
+    else
+    {
+        int number1 = calculate.Pull();
+        int number2 = calculate.Pull();
+        
+        if (isNumeric == false)
+            if (n == "+")
+            {
+                int result = number1 + number2;
+                calculate.Push(result);
+            }
+            if (n == "-")
+            {
+                int result1 = number1 - number2;
+                calculate.Push(result1);
+            }
+    }
 }

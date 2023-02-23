@@ -34,6 +34,7 @@ public class Stack
         _pointer--;
         return value;
     }
+    
 
     public string Check(string value)
     {
